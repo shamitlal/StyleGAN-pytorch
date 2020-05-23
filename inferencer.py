@@ -3,7 +3,8 @@ import torch
 import os.path
 import torchvision.utils as vutils
 import torch.nn.functional as F
-
+import ipdb 
+st = ipdb.set_trace
 class Inferencer:
     def __init__(self, generator_channels, nz, style_depth):
         self.nz = nz
@@ -19,6 +20,7 @@ class Inferencer:
                 self.load_checkpoint(img_size, filename)
                 
                 self.generator.eval()
+                # st()
                 fake = self.generator(test_z, alpha=1)
                 fake = (fake + 1) * 0.5
                 fake = torch.clamp(fake, min=0.0, max=1.0)

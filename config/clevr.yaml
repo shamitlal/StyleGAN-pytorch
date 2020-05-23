@@ -1,4 +1,4 @@
-dataset_dir: /projects/katefgroup/datasets/FFHQ
+dataset_dir: /projects/katefgroup/datasets/stylegan_datasets/clevr_single_large
 log_dir: ./log
 nz: 512
 style_depth: 8

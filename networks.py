@@ -2,6 +2,8 @@ import torch
 import torch.nn as nn
 from custom_layers import EqualizedConv2d, EqualizedLinear, AdaIn, minibatch_stddev_layer, PixelNorm, NoiseInjection
 import random
+import ipdb 
+st = ipdb.set_trace
 
 class Generator(nn.Module):
     def __init__(self, channels, style_dim, style_depth):
@@ -21,6 +23,7 @@ class Generator(nn.Module):
         self.style_mapper = nn.Sequential(*layers)
 
     def forward(self, z, alpha):
+        # st()
         if type(z) not in (tuple, list):
             w = self.style_mapper(z)
             w = [w for _ in range(self.now_growth)]
@@ -90,6 +93,7 @@ class UpBlock(nn.Module):
     # if last layer (0 <= alpha <= 1) -> return RGB image (3 channels)
     # else return feature map of prev layer
     def forward(self, x, style, alpha=-1.0, noise=None):
+        # st()
         if self.prev: # if module has prev, then forward first.
             w, style = style[-1], style[:-1] # pop last style
             prev_x = x = self.prev(x, style)
