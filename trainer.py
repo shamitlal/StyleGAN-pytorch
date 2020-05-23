@@ -194,7 +194,7 @@ class Trainer:
 
     def load_checkpoint(self, filename):
         checkpoint = torch.load(filename)
-
+        # st()
         print('load {}x{} checkpoint'.format(checkpoint['img_size'], checkpoint['img_size']))
         while self.dataloader.img_size < checkpoint['img_size']:
             self.grow()
